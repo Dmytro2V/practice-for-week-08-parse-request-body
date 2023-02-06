@@ -7,18 +7,13 @@ let server;
 // Your code here
 const http = require("http");
 server = http.createServer((req,res) => {
-    console.log(req);
-    let method='';
-    console.log(url);
+    let method = req.method;
+    let url = req.url;
     let reqBody ='';
-    req.on('method', (meth) => method = meth);
-    //req.on('url', (ur) => url = ur);
-    req.on('data', (dat) => reqBody += dat)
+    req.on('data', (data) => reqBody += data)
     req.on('end', () => {
-        console.log('method = ', method);
-        console.log('URL = ', url);
-        console.log('data all = ', reqBody);
     });
+    req.
     res.end();
 });
 const port = 5000;
