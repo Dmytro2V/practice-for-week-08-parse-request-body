@@ -12,9 +12,14 @@ server = http.createServer((req,res) => {
     let reqBody ='';
     req.on('data', (data) => reqBody += data)
     req.on('end', () => {
+        if (reqBody) {
+            let parsed = parseBody(reqBody);
+            req.body = parsed;
+        }
+        sendFormPage(req, res);
+    
     });
-    req.
-    res.end();
+    
 });
 const port = 5000;
 server.listen(port, console.log('Server is listening on port', port));
